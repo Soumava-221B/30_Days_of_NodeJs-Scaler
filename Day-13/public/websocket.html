@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket</title>
+</head>
+<body>
+    <h1>Web Socket</h1>
+    <input type="text" placeholder="enter message" id="message">
+    <button id="btn" onclick="sendMessage()">Send</button>
+    <div id="info"></div>
+    <script>
+        const socket = new WebSocket("ws://127.0.0.1:5000/websocket")
+
+        socket.onmessage = function(event) {
+            event.data.text().then(message => {
+                const messageDiv = document.getElementById('info')
+                messageDiv.innerHTML+= `<p>`+ message + `<p>`
+            })
+        }
+        function sendMessage() {
+            const messageInput = document.getElementById('message').value;
+            const jsonData = { message: messageInput };
+            const jsonString = JSON.stringify(jsonData);
+
+            socket.send(jsonString);
+        }
+    </script>
+</body>
+</html>
