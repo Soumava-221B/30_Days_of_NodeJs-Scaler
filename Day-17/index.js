@@ -7,7 +7,7 @@ function connectToMongoDB() {
     mongoose.connect('mongodb://localhost:27017/Day-17').then(() => {
         console.log('Successfully connected to MongoDB')
     }).catch((err) => {
-        console.log('Error connection to MongoDB!')
+        console.log('Error connecting to MongoDB!')
     })
     }
 
