@@ -22,6 +22,16 @@ connectToMongoDB();
 
 app.use(productRoutes);
 
+function createProductNameIndex() { 
+  Product.createIndex({ name: 1 }, (err, result) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(result);
+    }
+  });
+}
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
